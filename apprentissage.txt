@@ -1,0 +1,76 @@
+Kubernetes
+ 
+Pour lister les contextes :
+kubectl config get-contexts
+Ici on va avoir minikube seul pour l’instant
+
+ou
+
+kubectl config current-context
+Cela nous indique quel contexte tourne sur le cluster
+
+Pour changer de contexte :
+Kubectl config use-context docker-desktop
+Ici on change de contexte pour docker desktop 
+
+Permet de lister les pods :
+kubectl get pod-n kube-system
+
+On retrouve tous les pods nécessaires au fonctionnement de minkube
+•	Etcd : base de données kubernetes
+•	Apiserver-minikube : interface de connexion avec les pods
+•	Controller manager minikube : comme son nom l’indique
+•	Kube-proxy : routeur des éléments entre eux
+•	Scheduler minikube : planificateur 
+•	storage provisioner : à proiri le volume
+•	Manipulation des pods
+
+
+Qu’est-ce qu’un pod ?
+Un POD est l’unité de base déployable sur Kubernetes, il contient :
+•	Un ou plusieurs conteneurs (généralement un seul).
+•	Les ressources partagées : IP, Espace d stockage, volumes , etc 
+•	Les définitions de configuration, comme les variables d’environnement. 
+ 
+
+ 
+2 modes de configurations des pods :
+•	Déclaratif : avec les fichiers YAML
+•	Impératif : en ligne de commande 
+Créer un dossier dans lequel insérer les pods :
+Ouvrir le fichier . yaml avec Visual Studio Code 
+Télécharger l’extension Kubernetes pour améliorer la rapidité d’écriture et ne pas se tromper sur l’indentation qui est fatal dans un fichier yaml.
+ 
+Recopier ce fichier et exécuter les commandes suivantes :
+#Apply le fichier yaml :
+kubectl apply -f 01-pod.yaml
+#Lister les pods :
+kubectl get pods -w
+Le -w n’est pas obligatoire, c’est le watcher qui permet de voir le changement d’état en temps réel
+#Détails d’un pod 
+kubectl describe pod khgcode
+#Check des logs
+kubectl logs khgcode
+
+#Pour se connecter et rentre dans son pod
+kubectl exec -it khgcode -- /bin/bash
+ici on peut mettre la commande que l’on veut après – dans la ligne par ex :
+Kubectl exec -it khgcode – ls / 
+Pour obtenir un ls de ce qu’il y a dans le pod
+#Pour en sortir :
+Exit
+
+#Lorsque l’on veut voir les logs de toutes les images du pod :
+Kubectl logs muilticontiner-pod -c sidecar
+
+
+ 
+Les Workload 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
