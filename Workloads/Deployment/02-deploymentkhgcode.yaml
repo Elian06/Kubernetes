@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+#deployment
+metadata:
+  name: khgcode-deployment
+  labels:
+    app: khgcode
+#replica set
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: khgcode
+  template:
+    metadata:
+      labels:
+        app: khgcode
+#pod
+    spec:
+      containers:
+      - name: khgcode
+        image: hervekhg/esgi-backend-x86:0.6
+        ports:
+        - containerPort: 8000

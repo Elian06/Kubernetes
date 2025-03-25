@@ -1,0 +1,25 @@
+
+piVersion: apps/v1
+kind: Deployment
+#deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+#replica set
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+#pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 8000
